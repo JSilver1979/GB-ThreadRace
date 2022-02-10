@@ -1,12 +1,9 @@
 package Lesson5;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 public class Car implements Runnable {
     private static int CARS_COUNT;
-    private static volatile AtomicBoolean isWinner = new AtomicBoolean(false);
     static {
         CARS_COUNT = 0;
     }
@@ -46,8 +43,5 @@ public class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
         finRace.countDown();
-        if (!isWinner.getAndSet(true)) {
-            System.out.println(this.name + " Победитель!!!");
-        }
     }
 }
